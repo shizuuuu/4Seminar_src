@@ -1,11 +1,10 @@
 var map;
 var currentInfoWindow = null;
-var markers = [];
+var markers_cafe = [];
 
 // cafe
-xlist = shinjuku_cafe.results;
 var place_cafe = [];
-for (let i=0; i<xlist.length; i++) {
+for (let i=0; i<shinjuku_cafe.results.length; i++) {
   x = shinjuku_cafe.results[i].geometry.location;
   y = shinjuku_cafe.results[i].name;
   z = shinjuku_cafe.results[i].price_level;
@@ -37,7 +36,7 @@ function createMarker(map, i) {
     title: place_cafe[i].name,
   });
 
-  markers.push(marker);
+  markers_cafe.push(marker);
 
   var infoWindow = new google.maps.InfoWindow({
     content: place_cafe[i].name,
@@ -60,5 +59,4 @@ function initMap() {
     zoom: 16
   });
   cafe(map);
-  console.log(markers);
 }
