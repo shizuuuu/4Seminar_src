@@ -59,5 +59,4 @@ function initMap() {
     zoom: 16
   });
   cafe(map);
-  console.log(markers_cafe);
 }
