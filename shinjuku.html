@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" >
+    <title>新宿</title>
+  </head>
+  <body>
+    <center>
+      <button onclick="location.href='index.html'">ホーム</button>
+      　<button onclick="location.href='kodaira.html'">小平キャンパス周辺</button>
+      <button onclick="location.href='kokubunji.html'">国分寺駅周辺</button>
+      
+      <h1>新宿駅周辺</h1>
+      <div id="map" style="width:620px; height:400px"></div>
+
+      <script type="text/javascript" src="./shop_list/shinjuku_data.js"></script>
+      <script type="text/javascript" src="./shinjuku_map.js"></script>
+        
+      <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyAiV2ZbFIYuD3N4hzGLstSn2e4ZG5A7QlU&callback=initMap&libraries=places" async defer></script>
+      </script>
+    
+      <br><br>
+      <button onclick="location.href='kuchikomishinjuku.html'">周辺情報掲示板</button>
+    
+      <br><br>
+      <h3>絞り込み条件</h3>
+      <br> 
+      <p>コンセントの有無</p>
+      <label><input type="checkbox",name="konsento",value="konsento">コンセント有り</label>
+    　　　　<p>現在地からの距離</p>
+      <label><input type="checkbox",name="100m",value="100m">100M以内</label>
+      <label><input type="checkbox",name="200m",value="200m">200M以内</label>
+      <label><input type="checkbox",name="300m",value="300m">300M以内</label>
+      <p>個室の有無</p>
+      <label><input type="checkbox",name="koshitsu",value="koshitsu">個室あり</label>
+      <p>お店の種類</p>
+      <label><input type="checkbox",name="cafe",value="cafe">カフェ</label>
+      <label><input type="checkbox",name="famires",value="famires">ファミレス</label>
+      <label><input type="checkbox",name="netcafe",value="netcafe">ネットカフェ</label>
+      <label><input type="checkbox",name="karaoke",value="karaoke">カラオケ</label>
+      <p>価格帯</p>
+      <label><input type="checkbox",name="1000",value="1000">1000円以内</label>
+      <label><input type="checkbox",name="2000",value="2000">2000円以内</label>
+      <label><input type="checkbox",name="3000",value="3000">3000円以内</label>
+    </center>
+  </body>
+</html>
+
