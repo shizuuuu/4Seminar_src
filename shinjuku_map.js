@@ -25,18 +25,18 @@ for (let i=0; i<shinjuku_cafe.results.length; i++) {
 
 function cafe(map) {
   for (var i=0; i<place_cafe.length; i++) {
-    createMarker(map, i)
+    createMarker(map, i, markers_cafe);
   }
 }
 
-function createMarker(map, i) {
+function createMarker(map, i, markers) {
   var marker = new google.maps.Marker({
     position: { lat:place_cafe[i].lat, lng:place_cafe[i].lng },
     map: map,
     title: place_cafe[i].name,
   });
 
-  markers_cafe.push(marker);
+  markers.push(marker);
 
   var infoWindow = new google.maps.InfoWindow({
     content: place_cafe[i].name,
@@ -59,4 +59,5 @@ function initMap() {
     zoom: 16
   });
   cafe(map);
+  console.log(markers_cafe);
 }
