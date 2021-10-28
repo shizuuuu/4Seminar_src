@@ -1,9 +1,9 @@
 var map;
 var currentInfoWindow = null;
-var markers_cafe = [];
 
 // cafe
 var place_cafe = [];
+var markers_cafe = [];
 for (let i=0; i<shinjuku_cafe.results.length; i++) {
   x = shinjuku_cafe.results[i].geometry.location;
   y = shinjuku_cafe.results[i].name;
