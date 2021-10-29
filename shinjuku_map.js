@@ -31,7 +31,7 @@ function createData(results) {
     }
   } 
   /*
-  price:
+  place:
   {
     i:
       lat: xxx
