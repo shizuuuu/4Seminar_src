@@ -1,6 +1,6 @@
 import json
 
-with open('shop_list/shinjuku_data_test.json','r',encoding="utf-8") as f_in, open('shop_list/test.js','w',encoding='utf-8') as f_out:
+with open('shop_list/***.json','r',encoding="utf-8") as f_in, open('***.js','w',encoding='utf-8') as f_out:
     jsn_shinjuku = json.load(f_in)
     f_out.write("test_data = ")   
     dct = {}
