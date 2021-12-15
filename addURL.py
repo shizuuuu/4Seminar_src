@@ -10,7 +10,7 @@ with open('***.json','r',encoding="utf-8") as f_in, open('***.js','w',encoding='
         if x == 'results':
             tmp = {}
             for i,z in enumerate(y):
-                url = {'url':'no{0}.com'.format(i)}
+                url = {'url':'https://www.google.co.jp/search?hl=ja&q={0}'.format(z['name'].replace(' ','+'))}
                 tmp = {**z,**url}
                 lst.append(tmp)
             dct[x] = lst
