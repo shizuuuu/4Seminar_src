@@ -1,48 +1,41 @@
 var map;
 var currentInfoWindow = null;
 
-var place_cafe = [], place_famires = [], place_hamburger = [], place_karaoke = [], place_netcafe = [];
-var markers_cafe = [], markers_famires = [], markers_hamburger = [], markers_karaoke = [], markers_netcafe = []; 
+var place_cafe = [], place_famires = [], place_hamburger = [], place_karaoke = [], place_netcafe = []; place_all = [];
+var markers_cafe = [], markers_famires = [], markers_hamburger = [], markers_karaoke = [], markers_netcafe = []; markers_all = [];
 
 function createData(results) {
-  for (let i=0; i<results.length; i++) {
-    x = results[i].geometry.location;
-    y = results[i].name;
-    z = results[i].price_level;
-    x["name"] = y;
-    x["price"] = z;
+  for (let i in results) {
+    a = {};
+    a['name'] = results[i].name;
+    a['lat'] = results[i].geometry.location.lat;
+    a['lng'] = results[i].geometry.location.lng;
+    a['price'] = results[i].price;
+    a['url'] = results[i].url;
 
-    switch(results[i].shop) {
+    place_all.push(a);
+
+    switch(results[i]['shop']) {
       case "cafe":
-        place_cafe.push(x);
+        place_cafe.push(a);
         break;
       case "famires":
-        place_famires.push(x);
+        place_famires.push(a);
         break;
       case "hamburger":
-        place_hamburger.push(x);
+        place_hamburger.push(a);
         break;
       case "karaoke":
-        place_karaoke.push(x);
+        place_karaoke.push(a);
         break;
       case "netcafe":
-        place_netcafe.push(x);
+        place_netcafe.push(a);
         break;
     }
   } 
-  /*
-  place:
-  {
-    i:
-      lat: xxx
-      lng: yyy
-      name: "zzz"
-      price: 0
-  }
-  */
 }
 
-function createMarker(map, i, place, markers) {
+function createMarker(i, place, markers) {
   var marker = new google.maps.Marker({
     position: { lat:place[i].lat, lng:place[i].lng },
     map: map,
@@ -50,9 +43,12 @@ function createMarker(map, i, place, markers) {
   });
 
   markers.push(marker);
+  markers_all.push(marker);
+
+  var contentStr = '<div>' + place[i].name + '<br><a href=\'' + place[i].url + '\' target="_blank">Google検索</a></div>';
 
   var infoWindow = new google.maps.InfoWindow({
-    content: place[i].name,
+    content: contentStr,
   });
 
   google.maps.event.addListener(marker, 'click', function(){
@@ -64,33 +60,35 @@ function createMarker(map, i, place, markers) {
   });
 }
 
-function cafe(map) {
-  for (var i=0; i<place_cafe.length; i++) {
-    createMarker(map, i, place_cafe, markers_cafe);
+
+
+function cafe(n) {
+    for (let i in place_cafe) {
+      createMarker(i, place_cafe, markers_cafe);
+    }
+}
+
+function famires() {
+  for (let i in place_famires) {
+    createMarker(i, place_famires, markers_famires);
   }
 }
 
-function famires(map) {
-  for (var i=0; i<place_famires.length; i++) {
-    createMarker(map, i, place_famires, markers_famires);
+function hamburger() {
+  for (let i in place_hamburger) {
+    createMarker(i, place_hamburger, markers_hamburger);
   }
 }
 
-function hamburger(map) {
-  for (var i=0; i<place_hamburger.length; i++) {
-    createMarker(map, i, place_hamburger, markers_hamburger);
+function karaoke() {
+  for (let i in place_karaoke) {
+    createMarker(i, place_karaoke, markers_karaoke);
   }
 }
 
-function karaoke(map) {
-  for (var i=0; i<place_karaoke.length; i++) {
-    createMarker(map, i, place_karaoke, markers_karaoke);
-  }
-}
-
-function netcafe(map) {
-  for (var i=0; i<place_netcafe.length; i++) {
-    createMarker(map, i, place_netcafe, markers_netcafe);
+function netcafe() {
+  for (let i in place_netcafe) {
+    createMarker(i, place_netcafe, markers_netcafe);
   }
 }
 
@@ -102,9 +100,4 @@ function initMap() {
     zoom: 16
   });
   createData(shinjuku_data.results);
-  cafe(map);
-  famires(map);
-  hamburger(map); 
-  karaoke(map);
-  netcafe(map);
 }
